@@ -2,6 +2,10 @@ let express = require('express')
 const PORT = 5000
 const app = express();
 
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended: true}));
+
 let quotesData = [
     { quote: 'I\'m not going to school just for the academics - I wanted to share ideas, to be around people who are passionate about learning.', author: 'Emma Watson' },
     { quote: 'Remember there\'s no such thing as a small act of kindness. Every act creates a ripple with no logical end.', author: 'Scott Adams' },
@@ -14,9 +18,10 @@ app.get('/quotes', (req, res) => {
     res.send(quotesData);
 });
 
-app.get('/new-quotes', (req, res) => {
-    quotesData.push({ quote: 'learning is great!', author: 'everytong' })
-    res.send(quotesData);
+app.post('/new-quotes', (req, res) => {
+    console.log(req.body);
+    quotesData.push(req.body);
+    res.sendStatus(200);
 });
 
 
