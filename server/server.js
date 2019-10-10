@@ -14,6 +14,13 @@ app.get('/quotes', (req, res) => {
     res.send(quotesData);
 });
 
+app.get('/new-quotes', (req, res) => {
+    quotesData.push({ quote: 'learning is great!', author: 'everytong' })
+    res.send(quotesData);
+});
+
+
+
 app.listen(PORT, () => {
     console.log("listening at port 5000");
 });
